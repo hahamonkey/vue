@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        {{msg}}
+        {{msg}}
+        <input type="text" id='ipt1'>
+        {{a}}
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        obj={
+            msg:'aaa'
+        }
+        Object.defineProperty(obj,"msg",{
+            set:function(val){
+                document.getElementById('div1').innerHTML;
+            }
+        })
+        var oIpt=document.getElementById('ipt1');
+        oIpt.onkeyup=function(){
+            obj.msg=this.value;
+        }
+    </script>
+</body>
+</html>

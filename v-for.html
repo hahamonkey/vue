@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="val in arr">{{val}}</li>
+        </ul>
+        <ul>
+            <li v-for="(val,index) in arr">{{index}}---{{val}}</li>
+        </ul>
+        <ul>
+            <li v-for="(a,key) in student">{{key}}:{{a}}</li>
+            <!-- 用a表明与形参的名字无关，其调用的顺序是固定的 -->
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                arr:['a','b','c','d'],
+                student:{
+                    name:"zhangsan",
+                    age:20,
+                    number:001
+                }
+            }
+        })
+    </script>
+</body>
+</html>
