@@ -10,10 +10,13 @@
             border: 1px solid #000;
             border-collapse: collapse;
         }
+        thead{
+            font-size:18px;
+            font-weight:600;
+        }
     </style>
 </head>
 <body>
-<div id="cart">
     <button>添加商品</button>
     <table>
         <thead>
@@ -29,8 +32,20 @@
         </tr>
         </thead>
         <tbody id="product-list"></tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6">
+            </td>
+            <td>
+                总计：
+                <span id="total">0</span>
+            </td>
+            <td>
+                <button>结账</button>
+            </td>
+        </tr>
+        </tfoot>
     </table>
-</div>
 <script src="jquery-1.12.4.js"></script>
 <script>
     var html =  '<tr>'
@@ -47,10 +62,10 @@
                     +'<td class="price">$price</td>'
                     +'<td>'
                         +'<button class="sub">-</button>'
-                        +'<input type="text" value="1">'
+                        +'<input type="text" value="$num">'
                         +'<button class="add">+</button>'
                     +'</td>'
-                    +'<td class="total-price">19</td>'
+                    +'<td class="total-price">$total</td>'
                     +'<td>'
                         +'<a href="javascript:;" class="del">删除</a>'
                     +'</td>'
@@ -66,11 +81,44 @@
             var tr = html.replace('$img',pro.productImg)
                     .replace('$name',pro.productName)
                     .replace('$price',pro.productPrice)
-                    .replace('$parts',partsHtml);
+                    .replace('$parts',partsHtml)
+                    .replace('$num',pro.productQuentity)
+                    .replace('$total',pro.productPrice*pro.productQuentity);
             $('#product-list').append(tr);
         }
+        $('.add').on('click',function(){
+            var $pre =$(this).prev();
+            var sum= parseInt($pre.val())+1;
+            $pre.val(sum);
+            var price=$(this).parent().prev().text();
+            $(this).parent().next().text(price*sum);
+            total();
+        });
+        $('.sub').on('click',function(){
+            var $nxt =$(this).next();
+            if($nxt.val()>0){
+                var sum= parseInt($nxt.val())-1;
+                $nxt.val(sum);
+                var price=$(this).parent().prev().text();
+                $(this).parent().next().text(price*sum);
+                total();
+            }
+        });
+        $(':checkbox').on('click',function(){
+            total();
+        });
+        function total(){
+            var total=0;
+            $(':checked').each(function(){
+                total += $(this).parent().siblings('.total-price').text()*1;
+            });
+            $('#total').text(total);
+        }
+        $('a').on('click',function(){
+            $(this).parent().parent().html('');
+            total();
+        })
     }, 'json');
-//    var
 </script>
 </body>
 </html>
