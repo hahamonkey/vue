@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #container{
+            width:400px;
+            height:400px;
+            padding:10px;
+            background:#e0e0e0;
+            position:absolute;
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+            margin: auto;
+        }
+        span{
+            float:right;
+            font-size:12px;
+            font-weight:200;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <button @click="isLogin=true;isReg=false;">登陆</button>
+        <button @click="isReg=true;isLogin=false;">注册</button>
+        <demo title='登陆' v-show='isLogin' @close="fn">
+                用户名：<input type="text"><br>
+                密码：<input type="password"><br><br>
+                <button>登陆</button>
+                
+        </demo>
+        <demo title='注册' v-show='isReg' @close="fn">
+                用户名：<input type="text"><br>
+                密码：<input type="password"><br>
+                确认密码：<input type="password"><br><br>
+                <button>注册</button>
+        </demo>
+    </div>
+    <script src="vue.js"></script>
+    <script type="text/x-template" id="temp">
+        <div id='container'>
+            <h3>{{title}}<span @click="$emit('close',title)">x</span></h3><hr>
+            <slot></slot>
+        </div>
+    </script>
+    <script>
+        var vm =  new Vue({
+            el:"#app",
+            data:{
+                isLogin:false,
+                isReg:false
+            },
+            components:{
+                demo:{
+                    template:'#temp',
+                    props:['title']
+                }
+            },
+            methods:{
+                fn(val){
+                    this.isLogin = false;
+                    this.isReg = false;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
