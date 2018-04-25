@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <template v-for="val in arr">
+        <h2>{{val}}</h2>
+        <p>{{val}}</p>
+    </template>
+
+    <template v-if="msg == 1">
+        <h2>dasfj</h2>
+        <p>djfal</p>
+    </template>
+    <template v-else>
+        <h2>456</h2>
+        <p>897</p>
+    </template>
+
+    <!-- 下面页面中仍然显示，因为template不是有效的标签，所以v-show不起作用
+        然而v-if好使是因为v-show存在DOM结构，这里没有所以不好使
+    -->
+    <template v-show="msg == 1">
+        <h2>456</h2>
+        <p>897</p>
+    </template>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            arr:['a','b','c'],
+            msg:3
+        }
+    });
+</script>
+</body>
+</html>

@@ -8,27 +8,50 @@
 </head>
 <body>
     <div id="app">
+        <demo title="title1" content="content">
+            <h3>我是传值footer</h3>
+        </demo>
+        <demo title="title2"></demo>
     </div>
     <script src="vue.js"></script>
+
+    <!-- 模板代替见下面template:'#temp'-->
     <script type="text/x-template" id="temp">
         <div>
-            <h2>{{title}}</h2>
-            <p>{{content}}</p>
-            <div>
+            <span>footer</span>
+
+            <!-- slot标签代表传值元素,用页面中demo内标签代替-->
+            <slot>
                 <span>我是footer</span>
-            </div>
+            </slot>
         </div>
     </script>
     <script>
+
+        /*//全局组件
+        Vue.component('demo',{  //要放在定义vue之前，且只能在挂在元素内使用
+            template:'<h1>dsjfka</h1>' //模板内只能有一个根元素
+        })*/
         var vm = new Vue({
             el:"#app",
             data:{
-
+                arr:['a','c','b']
             },
-            component:{
-                
+            //局部组件
+            components:{
+                demo:{
+                    template:'<h1>{{title}}</h1>',  //模板中使用数据
+                    props:['title','content']  //页面中传来数据
+                }
             }
+            /*components:{
+                demo:{
+                    template:'#temp',   //模板量比较大时代替
+                    props:['title','content']
+                }
+            }*/
         })
+
     </script>
 </body>
 </html>
