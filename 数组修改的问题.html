@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <button @click="push">push</button>
+    <button @click = 'pop'>pop</button>
+    <button @click = 'change'>change</button>
+    <ul>
+        <li v-for="val in arr">{{val}}</li>
+    </ul>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            arr:['a','b','c','d']
+        },
+        methods:{
+            push:function(){
+                this.arr.push(Math.random());
+            },
+            pop(){
+                this.arr.pop();
+            },
+            change(){
+        //解决据数组索引修改值但页面不更新的问题
+                Vue.set(this.arr,1,666);
+//                this.arr[1] = '666';  不好使
+//                this.arr.length = 2;  不好使，页面同样更新不了
+//                this.arr.splice(1,1,555); 好使
+            }
+        }
+    });
+</script>
+</body>
+</html>

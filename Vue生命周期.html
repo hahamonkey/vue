@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: 'haha'
+        },
+        beforeCreate: function () {
+            console.log('beforeCreate', this.$data, this.$el);
+        },
+        created: function () {
+            console.log('created', this.$data, this.$el);
+        },
+        beforeMount: function () {
+            console.log('beforeMount', this.$data, this.$el);
+        },
+        mounted: function(){
+            console.log('mouted',this.$el);
+        },
+        //vm.msg='某个值'
+        beforeUpdate:function(){
+            console.log('beforeUpdate');
+        },
+        updated:function(){
+            console.log('updated')
+        },
+        //vm.$destroy()，销毁后任然可以取到最近一步的值，但是销毁后不可以更改数据，且不会出发数据更新操作
+        beforeDestory:function(){
+            console.log('beforeDestroy');
+        },
+        destoryed:function(){
+            console.log('destoryed');
+        }
+    });
+</script>
+</body>
+</html>

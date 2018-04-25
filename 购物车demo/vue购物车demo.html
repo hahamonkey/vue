@@ -33,7 +33,7 @@
         </tr>
         </thead>
         <tbody>
-            <tr v-for="obj in proList">
+            <tr v-for="(obj,idx) in proList">
                     <td>
                         <input type="checkbox" v-model="checkPro" :value="obj">
                     </td>

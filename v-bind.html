@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .aa{
+            background:red;
+        }
+        .bb{
+            color:black;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <img v-bind:src="imgSrc" alt="这是一张图"/>
+    <img :src="imgSrc" alt=""/>
+    <div :class="{aa:isAa,bb:isBb}"></div>
+    <!--<div :class="[isAa,isBb]"></div>-->
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            imgSrc:'购物车demo/img/1.jpg',
+            isAa:true,
+            isBb:false
+           /* isAa:'aa',
+            isBb:''*/
+        }
+    });
+</script>
+</body>
+</html>

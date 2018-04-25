@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <!-- v-if如果成立则添加DOM结构，如果修改后不成立，则删除DOM结构-->
+    <div v-if="msg == 1">111</div>
+    <div v-else-if="msg == 2">222</div>
+    <div v-else-if="msg == 3">333</div>
+    <!-- 使用v-show 相当于使用样式显示或隐藏，始终存在DOM结构-->
+    <div v-show="msg == 4">444</div>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:1
+        }
+    });
+</script>
+</body>
+</html>

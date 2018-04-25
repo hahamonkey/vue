@@ -36,18 +36,18 @@
                     this.content.push(obj);
                     this.input='';
                     this.content.sort(function(x,y){
-                        return x.name > y.name;
+                        return x.name > y.name;  //'>'按ASCII 字母排序，'-'按大小排序
                     });
                     this.showContent = this.content;
                 },
                 change:function(obj){
                     obj.isRed=!obj.isRed;
                 },
-                filterArr(){
+                filterArr:function(){
                     this.showContent = this.content.filter((obj) => {
                         //[{name:aaa,isRed:false},{name:bbb,isRed:false}]
                         return obj.name.includes(this.input);
-                    });
+                    })
                 }
             }
             

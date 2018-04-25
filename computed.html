@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>计算属性</title>
 </head>
 <div id="app">
     {{firstName}} + {{lastName}} = {{fullName}}
@@ -18,7 +18,11 @@
                 firstName:'zhang',
                 lastName:'san'
             },
+            //computed有计算缓存的功能
             computed:{
+                /*fullName:function(){
+                    return this.firstName + ' ' + this.lastName;
+                */
                 fullName:{
                     get:function(){
                         return this.firstName + ' ' + this.lastName;
@@ -30,7 +34,7 @@
                     }
                 }
             },
-            watch:{
+            watch:{   //监测属性，属性值发生改变时执行函数
                 firstName:function(){
                     console.log('firstName...');
                 }
