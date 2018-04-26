@@ -1,6 +1,7 @@
 <template>
     <div class="test2">
         <h2>我是Test2</h2>
+        id:{{$route.params.id}}
         <router-view/>
     </div>
 </template>
